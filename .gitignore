@@ -487,5 +487,9 @@ API/appsettings.json
 # Ignore local development database files
 *.db
 
+# Ignore SQLite database files
+*.db-wal
+*.db-shm
+
 # Ignore SSL certificates (e.g. for mkcert)
 ssl/
