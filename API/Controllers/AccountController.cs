@@ -5,6 +5,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
@@ -26,5 +27,10 @@ public class AccountController(DataContext context) : BaseApiController
         await context.SaveChangesAsync();
 
         return user;
+    }
+
+    private async Task<bool> UserExists(string username)
+    {
+        return await context.Users.AnyAsync(x => x.UserName == username);
     }
 }
