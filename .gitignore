@@ -483,3 +483,9 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 API/appsettings.json
+
+# Ignore local development database files
+*.db
+
+# Ignore SSL certificates (e.g. for mkcert)
+ssl/
