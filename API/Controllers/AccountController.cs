@@ -20,7 +20,7 @@ public class AccountController(DataContext context) : BaseApiController
 
         var user = new AppUser
         {
-            UserName = registerDto.Username.ToLower(),
+            Username = registerDto.Username.ToLower(),
             PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
             PasswordSalt = hmac.Key
         };
@@ -33,6 +33,6 @@ public class AccountController(DataContext context) : BaseApiController
 
     private async Task<bool> UserExists(string username)
     {
-        return await context.Users.AnyAsync(x => x.UserName.ToLower() == username.ToLower());
+        return await context.Users.AnyAsync(x => x.Username.ToLower() == username.ToLower());
     }
 }
