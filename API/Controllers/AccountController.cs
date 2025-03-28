@@ -37,6 +37,8 @@ public class AccountController(DataContext context) : BaseApiController
         var user = await context.Users.FirstOrDefaultAsync(x => 
             x.Username == loginDTO.Username.ToLower());
 
+        if (user == null) return Unauthorized("Invalid username");
+
     }
 
     private async Task<bool> UserExists(string username)
