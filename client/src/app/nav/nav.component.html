@@ -16,6 +16,16 @@
             </ul>
         }
 
+        @if (loggedIn) {
+            <div class="dropdown">
+                <a class="dropdown-toggle text-light">Welcome user</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item">Edit profile</a>
+                    <a class="dropdown-item">Logout</a>
+                </div>
+            </div>
+        }
+
         @if (!loggedIn) {
             <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
                 <input 
@@ -32,6 +42,6 @@
                 <button class="btn btn-outline-success" type="submit">Login</button>
             </form>
         }
-        
+
     </div>
   </nav>
