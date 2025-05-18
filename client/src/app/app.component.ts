@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from "./nav/nav.component";
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,19 @@ import { NavComponent } from "./nav/nav.component";
 })
 export class AppComponent implements OnInit {
   http = inject(HttpClient);
+  private accountService = inject(AccountService);
   title = 'DatingApp';
   users: any;
 
   ngOnInit(): void {
     this.getUsers();
+  }
+
+  setCurrentUser() {
+    const userString = localStorage.getItem('user');
+    if (!userString) return;
+    const user = JSON.parse(userString);
+    this.accountService.currentUser.set(user);
   }
 
   getUsers() {
